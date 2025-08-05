@@ -1,0 +1,43 @@
+{
+  "name": "bengali-calendar",
+  "version": "8.0.7",
+  "description": "বাংলা তারিখ, সময়, মাস ও সপ্তাহের দিনের নাম সহ Bangla Calendar and Time Utility with TypeScript support.",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mubasshir14/bengali-calendar.git"
+  },
+  "homepage": "https://github.com/Mubasshir14/bengali-calendar#readme",
+  "scripts": {
+    "build": "npx tsc",
+    "prepare": "npm run build",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "bangla",
+    "calendar",
+    "date",
+    "time",
+    "bangla-date",
+    "বাংলা",
+    "তারিখ",
+    "সময়",
+    "typescript",
+    "bengali",
+    "bangla",
+    "calendar",
+    "date",
+    "time",
+    "typescript"
+  ],
+  "author": "S M Mubasshir Al Kasshaf",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}
