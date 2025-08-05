@@ -9,7 +9,7 @@ A TypeScript-supported NPM package for displaying dates and times in Bangla (Ben
 You can install the package using npm:
 
 ```bash
-npm install bangla-calendar
+npm i bengali-calendar
 ```
 
 ## Usage
