@@ -257,7 +257,6 @@ export function formatFullDateTimeDual(
     ? `${banglaHours}:${banglaMinutes}:${banglaSeconds} ${banglaAmPm}`
     : `${banglaHours}:${banglaMinutes} ${banglaAmPm}`;
 
-  // ইংরেজি সময় ও AM/PM
   const englishDayName = date.toLocaleString("en-US", { weekday: "long" });
   const englishDay = date.getDate();
   const englishMonthName = getEnglishMonthName(date);

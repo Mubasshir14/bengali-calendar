@@ -12,4 +12,6 @@ export {
   getBanglaMonthName,
   formatBanglaDateWithBanglaMonth,
   formatFullBanglaDateTime,
+  getBanglEnglishFullDateTimeInfo,
+  formatFullDateTimeDual,
 } from "./utils";

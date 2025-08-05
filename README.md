@@ -222,7 +222,7 @@ import { formatFullDateTimeDual } from "bangla-calendar";
 
 const formattedDateTime = formatFullDateTimeDual(new Date());
 // Example output:
-// 'বুধবার, ২২ শ্রাবণ ১৪৩২ (১৪:৩০) | Wednesday, 6 August 2025 (14:30)'
+// 'বুধবার, ২২ শ্রাবণ ১৪৩২ (১৪:৩০ অপরাহ্ন) | Wednesday, 6 August 2025 (4:30 PM)'
 
 console.log(formattedDateTime);
 ```
