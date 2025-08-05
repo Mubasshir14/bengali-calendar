@@ -313,32 +313,67 @@ export function getBanglEnglishFullDateTimeInfo(date: Date = new Date()) {
   };
 }
 
+// export function formatFullDateTimeDual(
+//   date: Date = new Date(),
+//   includeSeconds = false
+// ): string {
+//   const banglaDateInfo = getBanglaDate(date);
+//   const banglaDayName = banglaWeekdays[date.getDay()];
+//   const banglaHours = toBanglaDigits(date.getHours());
+//   const banglaMinutes = toBanglaDigits(date.getMinutes());
+//   const banglaTime = includeSeconds
+//     ? `${banglaHours}:${toBanglaDigits(date.getMinutes())}:${toBanglaDigits(
+//         date.getSeconds()
+//       )}`
+//     : `${banglaHours}:${banglaMinutes}`;
+
+//   const englishDayName = date.toLocaleString("en-US", { weekday: "long" });
+//   const englishDay = date.getDate();
+//   const englishMonthName = getEnglishMonthName(date);
+//   const englishYear = date.getFullYear();
+//   const englishHours = date.getHours().toString().padStart(2, "0");
+//   const englishMinutes = date.getMinutes().toString().padStart(2, "0");
+//   const englishTime = includeSeconds
+//     ? `${englishHours}:${date.getMinutes().toString().padStart(2, "0")}:${date
+//         .getSeconds()
+//         .toString()
+//         .padStart(2, "0")}`
+//     : `${englishHours}:${englishMinutes}`;
+
+//   return `${banglaDayName}, ${banglaDateInfo.day} ${banglaDateInfo.month} ${banglaDateInfo.year} (${banglaTime}) | ${englishDayName}, ${englishDay} ${englishMonthName} ${englishYear} (${englishTime})`;
+// }
 export function formatFullDateTimeDual(
   date: Date = new Date(),
   includeSeconds = false
 ): string {
   const banglaDateInfo = getBanglaDate(date);
   const banglaDayName = banglaWeekdays[date.getDay()];
-  const banglaHours = toBanglaDigits(date.getHours());
-  const banglaMinutes = toBanglaDigits(date.getMinutes());
-  const banglaTime = includeSeconds
-    ? `${banglaHours}:${toBanglaDigits(date.getMinutes())}:${toBanglaDigits(
-        date.getSeconds()
-      )}`
-    : `${banglaHours}:${banglaMinutes}`;
 
+  // বাংলা সময় ও AM/PM (পুর্বাহ্ন/অপরাহ্ন)
+  let banglaHoursNum = date.getHours();
+  const banglaAmPm = banglaHoursNum >= 12 ? "অপরাহ্ন" : "পুর্বাহ্ন";
+  banglaHoursNum = banglaHoursNum % 12;
+  if (banglaHoursNum === 0) banglaHoursNum = 12;
+  const banglaHours = toBanglaDigits(banglaHoursNum);
+  const banglaMinutes = toBanglaDigits(date.getMinutes());
+  const banglaSeconds = toBanglaDigits(date.getSeconds());
+  const banglaTime = includeSeconds
+    ? `${banglaHours}:${banglaMinutes}:${banglaSeconds} ${banglaAmPm}`
+    : `${banglaHours}:${banglaMinutes} ${banglaAmPm}`;
+
+  // ইংরেজি সময় ও AM/PM
   const englishDayName = date.toLocaleString("en-US", { weekday: "long" });
   const englishDay = date.getDate();
   const englishMonthName = getEnglishMonthName(date);
   const englishYear = date.getFullYear();
-  const englishHours = date.getHours().toString().padStart(2, "0");
+  const englishHoursNum = date.getHours() % 12 || 12;
+  const englishHours = englishHoursNum.toString().padStart(2, "0");
   const englishMinutes = date.getMinutes().toString().padStart(2, "0");
+  const englishSeconds = date.getSeconds().toString().padStart(2, "0");
+  const englishAmPm = date.getHours() >= 12 ? "PM" : "AM";
   const englishTime = includeSeconds
-    ? `${englishHours}:${date.getMinutes().toString().padStart(2, "0")}:${date
-        .getSeconds()
-        .toString()
-        .padStart(2, "0")}`
-    : `${englishHours}:${englishMinutes}`;
+    ? `${englishHours}:${englishMinutes}:${englishSeconds} ${englishAmPm}`
+    : `${englishHours}:${englishMinutes} ${englishAmPm}`;
 
   return `${banglaDayName}, ${banglaDateInfo.day} ${banglaDateInfo.month} ${banglaDateInfo.year} (${banglaTime}) | ${englishDayName}, ${englishDay} ${englishMonthName} ${englishYear} (${englishTime})`;
 }
