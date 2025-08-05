@@ -98,7 +98,6 @@ const banglaWeekdays = [
   "শনিবার",
 ];
 
-
 const banglaMonthsBengaliCalendar = [
   "বৈশাখ",
   "জ্যৈষ্ঠ",
@@ -289,10 +288,10 @@ export function getBanglEnglishFullDateTimeInfo(date: Date = new Date()) {
 
   const englishDay = date.getDate();
   const englishMonthName = getEnglishMonthName(date);
-  const englishDayName = date.toLocaleString('en-US', { weekday: 'long' });
+  const englishDayName = date.toLocaleString("en-US", { weekday: "long" });
   const englishYear = date.getFullYear();
-  const englishTime24 = date.toLocaleTimeString('en-GB'); 
-  const englishTime12 = date.toLocaleTimeString('en-US'); 
+  const englishTime24 = date.toLocaleTimeString("en-GB");
+  const englishTime12 = date.toLocaleTimeString("en-US");
 
   return {
     bangla: {
@@ -310,7 +309,36 @@ export function getBanglEnglishFullDateTimeInfo(date: Date = new Date()) {
       weekday: englishDayName,
       time24: englishTime24,
       time12: englishTime12,
-    }
+    },
   };
 }
 
+export function formatFullDateTimeDual(
+  date: Date = new Date(),
+  includeSeconds = false
+): string {
+  const banglaDateInfo = getBanglaDate(date);
+  const banglaDayName = banglaWeekdays[date.getDay()];
+  const banglaHours = toBanglaDigits(date.getHours());
+  const banglaMinutes = toBanglaDigits(date.getMinutes());
+  const banglaTime = includeSeconds
+    ? `${banglaHours}:${toBanglaDigits(date.getMinutes())}:${toBanglaDigits(
+        date.getSeconds()
+      )}`
+    : `${banglaHours}:${banglaMinutes}`;
+
+  const englishDayName = date.toLocaleString("en-US", { weekday: "long" });
+  const englishDay = date.getDate();
+  const englishMonthName = getEnglishMonthName(date);
+  const englishYear = date.getFullYear();
+  const englishHours = date.getHours().toString().padStart(2, "0");
+  const englishMinutes = date.getMinutes().toString().padStart(2, "0");
+  const englishTime = includeSeconds
+    ? `${englishHours}:${date.getMinutes().toString().padStart(2, "0")}:${date
+        .getSeconds()
+        .toString()
+        .padStart(2, "0")}`
+    : `${englishHours}:${englishMinutes}`;
+
+  return `${banglaDayName}, ${banglaDateInfo.day} ${banglaDateInfo.month} ${banglaDateInfo.year} (${banglaTime}) | ${englishDayName}, ${englishDay} ${englishMonthName} ${englishYear} (${englishTime})`;
+}

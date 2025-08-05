@@ -181,6 +181,52 @@ const fullDateTime = formatFullBanglaDateTime(new Date());
 // Output example: 'রবিবার, ১২ ফাল্গুন ২০২৫, সময়: ১৪:৩০:১৫'
 ```
 
+### Get Bangla English Full Date Time Info
+
+- Returns separate detailed objects for both Bangla and English date-time info including day, month, year, weekday, and time (12h & 24h).
+
+```typescript
+import { getBanglEnglishFullDateTimeInfo } from "bangla-calendar";
+
+const dateInfo = getBanglEnglishFullDateTimeInfo(new Date());
+
+console.log(dateInfo.bangla);
+// Example output:
+// {
+//   day: '২২',
+//   month: 'শ্রাবণ',
+//   year: '১৪৩২',
+//   weekday: 'বুধবার',
+//   time24: '১৪:৩০:১৫',
+//   time12: '২:৩০:১৫ অপরাহ্ন'
+// }
+
+console.log(dateInfo.english);
+// Example output:
+// {
+//   day: 6,
+//   month: 'August',
+//   year: 2025,
+//   weekday: 'Wednesday',
+//   time24: '14:30:15',
+//   time12: '2:30:15 PM'
+// }
+```
+
+### Format Full Bangla English DateTime
+
+- Returns a single formatted string combining Bangla and English date-time info side by side.
+
+```typescript
+import { formatFullDateTimeDual } from "bangla-calendar";
+
+const formattedDateTime = formatFullDateTimeDual(new Date());
+// Example output:
+// 'বুধবার, ২২ শ্রাবণ ১৪৩২ (১৪:৩০) | Wednesday, 6 August 2025 (14:30)'
+
+console.log(formattedDateTime);
+```
+
 ## Features
 
 - Converts Gregorian calendar dates to Bangla calendar format.
