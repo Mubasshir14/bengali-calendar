@@ -1,6 +1,6 @@
 # Bangla Calendar
-<!-- ![Image Description](https://i.ibb.co/Y7hZzNYf/images-1.jpg) -->
 
+<!-- ![Image Description](https://i.ibb.co/Y7hZzNYf/images-1.jpg) -->
 
 A TypeScript-supported NPM package for displaying dates and times in Bangla (Bengali) format.
 
@@ -20,15 +20,20 @@ To use the `bangla-calendar` package, import it into your project:
 
 ```typescript
 import {
+  toBanglaDigits,
+  toEnglishDigits,
   formatBanglaDate,
   formatBanglaTime,
   formatBanglaTime12,
-  toBanglaDigits,
-  toEnglishDigits,
   getCurrentBanglaDateTime,
   getBanglaWeekNumber,
-} from 'bangla-calendar';
-
+  getBanglaMonthFromEnglish,
+  getDayName,
+  getEnglishMonthName,
+  getBanglaMonthName,
+  formatBanglaDateWithBanglaMonth,
+  formatFullBanglaDateTime,
+} from "bangla-calendar";
 ```
 
 ### Getting Bangla Date
@@ -73,33 +78,33 @@ console.log(banglaTime); // ১৪:৩০:১৫
 ```
 
 ### Convert Bangla digits to English digits
+
 ```typescript
-import { toEnglishDigits } from 'bangla-calendar';
+import { toEnglishDigits } from "bangla-calendar";
 
-const engNumber = toEnglishDigits('১২৩৪৫৬৭৮৯০');
+const engNumber = toEnglishDigits("১২৩৪৫৬৭৮৯০");
 // Output: "1234567890"
-
 ```
 
 ### Get current Bangla date and time together
+
 ```typescript
-import { formatBanglaTime12 } from 'bangla-calendar';
+import { formatBanglaTime12 } from "bangla-calendar";
 
 const time12 = formatBanglaTime12(new Date());
 // Output example: ২:৩০:১৫ অপরাহ্ন
 
 const time12NoSeconds = formatBanglaTime12(new Date(), false);
 // Output example: ২:৩০ অপরাহ্ন
-
 ```
 
 ### Get Bangla week number of the year
+
 ```typescript
-import { getBanglaWeekNumber } from 'bangla-calendar';
+import { getBanglaWeekNumber } from "bangla-calendar";
 
 const weekNum = getBanglaWeekNumber(new Date());
 console.log(weekNum); // Output example: ১৫
-
 ```
 
 - Use `getCurrentBanglaDateTime` to get both formatted date and time in Bangla as an object:
@@ -108,6 +113,72 @@ console.log(weekNum); // Output example: ১৫
 const { banglaDate, banglaTime } = getCurrentBanglaDateTime();
 console.log(banglaDate); // রবিবার, ১২ মার্চ ২০২৫
 console.log(banglaTime); // ১৪:৩০:১৫
+```
+
+### Get Bangla Month from English Date
+
+- Convert a Gregorian date's English month to approximate Bangla calendar month name.
+
+```typescript
+import { getBanglaMonthFromEnglish } from "bangla-calendar";
+
+const banglaMonth = getBanglaMonthFromEnglish(new Date());
+// Output example: 'চৈত্র' (depending on current month)
+```
+
+### Get Day Name (Bangla)
+
+- Get the Bangla name of the weekday for a given date
+
+```typescript
+import { getDayName } from "bangla-calendar";
+
+const dayName = getDayName(new Date());
+// Output example: 'রবিবার'
+```
+
+### Get English Month Name (Bangla Digits)
+
+- Get the English (Gregorian) month name in Bangla script.
+
+```typescript
+import { getEnglishMonthName } from "bangla-calendar";
+
+const engMonthName = getEnglishMonthName(new Date());
+// Output example: 'মার্চ'
+```
+
+### Get Bangla Month Name (Bengali Calendar)
+
+- Get the Bangla calendar month name from a given Date.
+
+```typescript
+import { getBanglaMonthName } from "bangla-calendar";
+
+const banglaCalMonth = getBanglaMonthName(new Date());
+// Output example: 'ফাল্গুন'
+```
+
+### Format Bangla Date with Bangla Month
+
+- Returns Bangla date string showing only day (in Bangla digits) and Bengali calendar month.
+
+```typescript
+import { formatBanglaDateWithBanglaMonth } from "bangla-calendar";
+
+const formattedDate = formatBanglaDateWithBanglaMonth(new Date());
+// Output example: '১২ ফাল্গুন'
+```
+
+### Format Full Bangla DateTime
+
+- Returns a full date-time string including day name, Bangla date, Bengali calendar month, year and time.
+
+```typescript
+import { formatFullBanglaDateTime } from "bangla-calendar";
+
+const fullDateTime = formatFullBanglaDateTime(new Date());
+// Output example: 'রবিবার, ১২ ফাল্গুন ২০২৫, সময়: ১৪:৩০:১৫'
 ```
 
 ## Features
