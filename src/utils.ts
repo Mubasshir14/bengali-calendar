@@ -280,3 +280,37 @@ export function formatFullBanglaDateTime(
   const time = formatBanglaTime(date, includeSeconds);
   return `${dayName}, ${day} ${month} ${year}, সময়: ${time}`;
 }
+
+export function getBanglEnglishFullDateTimeInfo(date: Date = new Date()) {
+  const banglaDateInfo = getBanglaDate(date);
+  const banglaDayName = banglaWeekdays[date.getDay()];
+  const banglaTime24 = formatBanglaTime(date);
+  const banglaTime12 = formatBanglaTime12(date);
+
+  const englishDay = date.getDate();
+  const englishMonthName = getEnglishMonthName(date);
+  const englishDayName = date.toLocaleString('en-US', { weekday: 'long' });
+  const englishYear = date.getFullYear();
+  const englishTime24 = date.toLocaleTimeString('en-GB'); 
+  const englishTime12 = date.toLocaleTimeString('en-US'); 
+
+  return {
+    bangla: {
+      day: banglaDateInfo.day,
+      month: banglaDateInfo.month,
+      year: banglaDateInfo.year,
+      weekday: banglaDayName,
+      time24: banglaTime24,
+      time12: banglaTime12,
+    },
+    english: {
+      day: englishDay,
+      month: englishMonthName,
+      year: englishYear,
+      weekday: englishDayName,
+      time24: englishTime24,
+      time12: englishTime12,
+    }
+  };
+}
+
